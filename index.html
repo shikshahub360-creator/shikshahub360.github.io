@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class X Mathematics | Telangana State Board Public Exam Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--card:#1c2333;--border:#30363d;
+  --gold:#f0a500;--red:#e05c3a;--green:#3fb950;--blue:#58a6ff;
+  --purple:#bc8cff;--teal:#39d353;--text:#e6edf3;--muted:#8b949e;
+  --ch1:#f0a500;--ch2:#58a6ff;--ch3:#3fb950;--ch4:#bc8cff;--ch5:#e05c3a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:"Source Sans 3",sans-serif;font-size:15px;line-height:1.75;display:flex;min-height:100vh;}
+
+/* ---- SIDEBAR ---- */
+.sidebar{
+  width:260px;min-width:260px;background:var(--surface);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:200;
+  transition:transform .3s;
+}
+.sidebar-logo{
+  padding:20px 18px 14px;
+  border-bottom:1px solid var(--border);
+}
+.sidebar-logo .brand{
+  font-family:"Playfair Display",serif;font-size:17px;font-weight:900;
+  color:var(--text);line-height:1.2;
+}
+.sidebar-logo .sub{color:var(--muted);font-size:11px;margin-top:4px;font-family:"JetBrains Mono",monospace;letter-spacing:1px;}
+.sidebar-logo .govt{color:var(--gold);font-size:10px;margin-top:3px;font-family:"JetBrains Mono",monospace;}
+
+.chapter-group{margin:8px 0;}
+.chapter-btn{
+  width:100%;display:flex;align-items:center;gap:10px;
+  padding:10px 18px;background:transparent;border:none;
+  color:var(--muted);font-family:"Source Sans 3",sans-serif;
+  font-size:13px;font-weight:700;cursor:pointer;
+  text-align:left;transition:all .2s;
+  border-left:3px solid transparent;
+}
+.chapter-btn:hover{background:rgba(255,255,255,.04);color:var(--text);}
+.chapter-btn.active{color:var(--text);background:rgba(240,165,0,.08);border-left-color:var(--gold);}
+.chapter-btn .ch-num{
+  font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;
+  background:var(--border);padding:2px 7px;border-radius:4px;
+  flex-shrink:0;
+}
+.chapter-btn.active .ch-num{background:var(--gold);color:#000;}
+.chapter-btn .ch-arrow{margin-left:auto;font-size:12px;transition:transform .3s;}
+.chapter-btn.open .ch-arrow{transform:rotate(180deg);}
+
+.exercise-list{display:none;padding:4px 0 4px 0;}
+.chapter-btn.open + .exercise-list{display:block;}
+.ex-btn{
+  width:100%;display:flex;align-items:center;gap:8px;
+  padding:7px 18px 7px 32px;background:transparent;border:none;
+  color:var(--muted);font-size:13px;cursor:pointer;text-align:left;
+  transition:all .2s;border-left:3px solid transparent;
+  font-family:"Source Sans 3",sans-serif;
+}
+.ex-btn:hover{color:var(--text);background:rgba(255,255,255,.03);}
+.ex-btn.active{color:var(--gold);border-left-color:var(--gold);background:rgba(240,165,0,.05);}
+.ex-btn .ex-dot{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0;}
+.ex-btn.active .ex-dot{background:var(--gold);}
+
+.coming-soon{
+  padding:7px 18px 7px 32px;color:var(--border);
+  font-size:12px;font-family:"JetBrains Mono",monospace;
+  letter-spacing:1px;
+}
+
+/* ---- MAIN CONTENT ---- */
+.main{margin-left:260px;flex:1;min-width:0;}
+
+/* ---- TOP BAR ---- */
+.topbar{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:12px 32px;display:flex;align-items:center;gap:14px;
+  position:sticky;top:0;z-index:100;
+}
+.topbar-title{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;}
+.topbar-sub{color:var(--muted);font-size:12px;margin-top:1px;}
+.topbar .tag{
+  background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.3);
+  color:var(--gold);padding:3px 12px;border-radius:20px;
+  font-size:11px;font-family:"JetBrains Mono",monospace;margin-left:auto;
+}
+.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:20px;cursor:pointer;padding:4px;}
+
+/* ---- PAGE SECTIONS ---- */
+.page{display:none;padding:32px 36px 80px;}
+.page.active{display:block;}
+
+/* ---- CHAPTER HERO ---- */
+.ch-hero{
+  background:linear-gradient(135deg,#0d1117,#1a0a2e,#0d1117);
+  border:1px solid var(--border);border-left:4px solid var(--gold);
+  border-radius:12px;padding:28px 30px;margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.ch-hero::after{
+  content:"";position:absolute;right:-40px;top:-40px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(240,165,0,.08) 0%,transparent 70%);
+  border-radius:50%;
+}
+.ch-hero-tag{font-family:"JetBrains Mono",monospace;color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.ch-hero h1{font-family:"Playfair Display",serif;font-size:clamp(22px,3vw,36px);font-weight:900;margin-bottom:8px;}
+.ch-hero h1 span{color:var(--gold);}
+.ch-hero p{color:var(--muted);font-size:14px;max-width:560px;}
+.ch-hero .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.ch-hero .pill{background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);color:var(--gold);padding:3px 12px;border-radius:20px;font-size:11px;font-family:"JetBrains Mono",monospace;}
+
+/* ---- EXERCISE BLOCK ---- */
+.ex-block{margin-bottom:48px;}
+.ex-heading{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.ex-num-badge{background:var(--gold);color:#000;font-family:"Playfair Display",serif;font-weight:900;font-size:15px;min-width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0;padding:0 8px;}
+.ex-num-badge.blue{background:var(--blue);}
+.ex-num-badge.green{background:var(--green);}
+.ex-num-badge.purple{background:var(--purple);}
+.ex-num-badge.teal{background:var(--teal);}
+.ex-info h2{font-family:"Playfair Display",serif;font-size:20px;}
+.ex-info p{color:var(--muted);font-size:12px;margin-top:2px;}
+
+/* ---- CONCEPT BOX ---- */
+.concept{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.25);border-radius:10px;padding:14px 18px;margin:14px 0;}
+.concept-title{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:7px;}
+.concept ul{padding-left:18px;}
+.concept li{font-size:13.5px;margin:3px 0;}
+.concept p{font-size:13.5px;}
+
+/* ---- LAW GRID ---- */
+.law-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.law{background:rgba(57,211,83,.05);border:1px solid rgba(57,211,83,.2);border-radius:10px;padding:12px 14px;}
+.law-name{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:5px;}
+.law-formula{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--gold);margin:3px 0;}
+.law p{font-size:12.5px;color:var(--muted);}
+
+/* ---- CONVERSION BOX ---- */
+.conv-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.25);border-radius:10px;padding:14px 18px;margin:14px 0;text-align:center;}
+.conv-title{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:10px;}
+.conv-formula{font-family:"JetBrains Mono",monospace;font-size:17px;color:var(--gold);}
+.conv-note{font-size:12px;color:var(--muted);margin-top:7px;}
+
+/* ---- Q CARD ---- */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:10px;margin:14px 0;overflow:hidden;transition:border-color .2s;}
+.qcard:hover{border-color:rgba(240,165,0,.35);}
+.qhead{display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.qnum{background:var(--red);color:#fff;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:11px;padding:2px 9px;border-radius:5px;flex-shrink:0;margin-top:3px;}
+.qtxt{flex:1;font-size:14.5px;font-weight:600;}
+.qarrow{color:var(--muted);font-size:16px;transition:transform .3s;flex-shrink:0;margin-top:2px;}
+.qcard.open .qarrow{transform:rotate(180deg);}
+.qbody{display:none;padding:18px;}
+.qcard.open .qbody{display:block;}
+
+/* ---- SUB PART ---- */
+.sub{background:rgba(255,255,255,.02);border-radius:7px;padding:12px 14px;margin:10px 0;border-left:3px solid var(--surface);}
+.sub-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--purple);font-weight:700;margin-bottom:7px;}
+
+/* ---- MATH BLOCK ---- */
+.math{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:0 7px 7px 0;padding:12px 16px;font-family:"JetBrains Mono",monospace;font-size:13px;color:#cdd9e5;margin:8px 0;white-space:pre-wrap;line-height:1.95;}
+
+/* ---- ANSWER ---- */
+.ans{background:rgba(63,185,80,.07);border:1px solid rgba(63,185,80,.35);border-radius:7px;padding:10px 14px;margin:10px 0;display:flex;align-items:center;gap:9px;}
+.ans strong{color:var(--green);font-size:14px;}
+
+/* ---- PROOF BOX ---- */
+.proof{background:#0d2137;border:1px solid rgba(88,166,255,.35);border-radius:8px;padding:14px 18px;margin:10px 0;}
+.proof-title{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:9px;}
+.proof p{font-size:13.5px;color:#cdd9e5;margin:5px 0;}
+.proof b{color:var(--text);}
+
+/* ---- STEP BOX ---- */
+.step-box{background:rgba(88,166,255,.04);border:1px solid rgba(88,166,255,.2);border-radius:7px;padding:12px 16px;margin:8px 0;}
+.step-box p{font-size:13.5px;color:#cdd9e5;margin:4px 0;}
+.step-box b{color:var(--gold);}
+
+/* ---- HINT ---- */
+.hint{background:#2d1f00;border:1px solid var(--gold);border-radius:7px;padding:12px 16px;margin:12px 0;}
+.hint-title{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:7px;}
+.hint p,.hint li{color:#d4a847;font-size:13.5px;}
+.hint ul{padding-left:17px;}
+.hint li{margin:3px 0;}
+
+/* ---- CONCLUSION ---- */
+.concl{background:rgba(88,166,255,.05);border:1px solid rgba(88,166,255,.25);border-radius:7px;padding:11px 14px;margin:10px 0;}
+.concl p{color:#a8d4ff;font-size:13.5px;}
+
+/* ---- TABLE ---- */
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;}
+th{background:var(--surface);color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;padding:9px 12px;text-align:left;border:1px solid var(--border);}
+td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;}
+tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.T{color:var(--green);font-weight:700;}
+.NT{color:var(--red);font-weight:700;}
+
+/* ---- CHEAT SHEET ---- */
+.cheat{background:linear-gradient(135deg,#1a0a2e,#0d1a2e);border:2px solid var(--gold);border-radius:12px;padding:24px;margin:36px 0 16px;}
+.cheat h3{font-family:"Playfair Display",serif;font-size:18px;color:var(--gold);text-align:center;margin-bottom:18px;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ci{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:12px;}
+.ci h4{color:var(--gold);font-size:11px;font-family:"JetBrains Mono",monospace;letter-spacing:1px;margin-bottom:7px;}
+.ci li{font-size:12.5px;color:var(--muted);margin:3px 0;}
+.ci .hl{color:var(--text);}
+.ci ul{padding-left:15px;}
+
+/* ---- COMING SOON PAGE ---- */
+.coming-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;padding:40px;}
+.coming-page .icon{font-size:60px;margin-bottom:20px;}
+.coming-page h2{font-family:"Playfair Display",serif;font-size:28px;color:var(--muted);margin-bottom:12px;}
+.coming-page p{color:var(--border);font-size:14px;max-width:340px;}
+.coming-page .badge{margin-top:20px;background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.2);color:var(--gold);padding:6px 18px;border-radius:20px;font-size:12px;font-family:"JetBrains Mono",monospace;}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .menu-toggle{display:block;}
+  .page{padding:20px 16px 60px;}
+  .law-grid,.cg{grid-template-columns:1fr;}
+  .topbar{padding:10px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Class X Mathematics<br>Telangana State Board</div>
+    <div class="sub">SSC PUBLIC EXAM GUIDE</div>
+    <div class="govt">T.S. Govt. Textbook &middot; 2019-20</div>
+  </div>
+
+  <!-- Chapter 1 -->
+  <div class="chapter-group">
+    <button class="chapter-btn active open" onclick="toggleChapter(this,'ch1')">
+      <span class="ch-num">Ch 1</span> Real Numbers
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch1-list">
+      <button class="ex-btn active" onclick="showPage('ex11',this)"><span class="ex-dot"></span>Ex 1.1 &mdash; Euclid's Algorithm</button>
+      <button class="ex-btn" onclick="showPage('ex12',this)"><span class="ex-dot"></span>Ex 1.2 &mdash; Fundamental Theorem</button>
+      <button class="ex-btn" onclick="showPage('ex13',this)"><span class="ex-dot"></span>Ex 1.3 &mdash; Decimal Expansions</button>
+      <button class="ex-btn" onclick="showPage('ex14',this)"><span class="ex-dot"></span>Ex 1.4 &mdash; Irrational Numbers</button>
+      <button class="ex-btn" onclick="showPage('ex15',this)"><span class="ex-dot"></span>Ex 1.5 &mdash; Logarithms</button>
+    </div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch2')">
+      <span class="ch-num">Ch 2</span> Sets
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch2-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch3')">
+      <span class="ch-num">Ch 3</span> Polynomials
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch3-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch4')">
+      <span class="ch-num">Ch 4</span> Linear Equations
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch4-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch5')">
+      <span class="ch-num">Ch 5</span> Quadratic Equations
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch5-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 6 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch6')">
+      <span class="ch-num">Ch 6</span> Progressions
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch6-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 7 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch7')">
+      <span class="ch-num">Ch 7</span> Co-ordinate Geometry
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch7-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 8 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch8')">
+      <span class="ch-num">Ch 8</span> Similar Triangles
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch8-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 9 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch9')">
+      <span class="ch-num">Ch 9</span> Tangents &amp; Secants
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch9-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 10 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch10')">
+      <span class="ch-num">Ch 10</span> Mensuration
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch10-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 11 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch11')">
+      <span class="ch-num">Ch 11</span> Trigonometry
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch11-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 12 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch12')">
+      <span class="ch-num">Ch 12</span> Applications of Trig.
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch12-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 13 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch13')">
+      <span class="ch-num">Ch 13</span> Probability
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch13-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+  <!-- Chapter 14 -->
+  <div class="chapter-group">
+    <button class="chapter-btn" onclick="toggleChapter(this,'ch14')">
+      <span class="ch-num">Ch 14</span> Statistics
+      <span class="ch-arrow">&#9660;</span>
+    </button>
+    <div class="exercise-list" id="ch14-list">
+      <div class="coming-soon">Coming Soon...</div>
+    </div>
+  </div>
+
+</aside>
+
+<!-- ====== MAIN ====== -->
+<main class="main">
+  <div class="topbar">
+    <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <div>
+      <div class="topbar-title" id="topbar-title">Exercise 1.1 &mdash; Euclid's Division Algorithm</div>
+      <div class="topbar-sub" id="topbar-sub">Chapter 1 &mdash; Real Numbers</div>
+    </div>
+    <span class="tag">TS Board Public Exam</span>
+  </div>
+
+  <!-- ==================== EXERCISE 1.1 ==================== -->
+  <div class="page active" id="page-ex11">
+  <div class="ch-hero">
+    <div class="ch-hero-tag">Telangana State Board · Chapter 1 &middot; Real Numbers</div>
+    <h1>Exercise 1.1 &mdash; <span>Euclid's Division Algorithm</span></h1>
+    <p>HCF using Division Lemma &middot; Proof-based questions &middot; All 5 questions solved</p>
+    <div class="pills"><span class="pill">Theorem 1.1</span><span class="pill">a = bq + r</span><span class="pill">5 Questions</span></div>
+  </div>
+
+  <div class="ex-block">
+  <div class="concept">
+    <div class="concept-title">Book Formula &mdash; Theorem 1.1 (Division Algorithm)</div>
+    <p><b>a = bq + r</b> &nbsp; where 0 &le; r &lt; b</p>
+    <p style="margin-top:6px">Steps: Apply to (c,d) &rarr; get r &rarr; if r=0 then d is HCF &rarr; else apply to (d,r) &rarr; continue &rarr; last divisor = HCF</p>
+  </div>
+
+  <div class="qcard open" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1</span><span class="qtxt">Use Euclid's algorithm to find the HCF of: (i) 900 and 270 &nbsp; (ii) 196 and 38220 &nbsp; (iii) 1651 and 2032</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="sub"><div class="sub-lbl">(i) HCF of 900 and 270</div>
+  <div class="math">Step 1:  900 = 270 x 3 + 90
+Step 2:  270 =  90 x 3 +  0   [remainder=0, STOP]</div>
+  <div class="ans"><span>&#9989;</span><strong>HCF (900, 270) = 90</strong></div></div>
+  <div class="sub"><div class="sub-lbl">(ii) HCF of 196 and 38220</div>
+  <div class="math">Step 1:  38220 = 196 x 195 + 0   [remainder=0 in first step itself!]</div>
+  <div class="ans"><span>&#9989;</span><strong>HCF (196, 38220) = 196</strong></div>
+  <p style="color:var(--muted);font-size:12.5px;margin-top:6px">When r=0 in step 1, the smaller number is the HCF &mdash; it divides the larger exactly.</p></div>
+  <div class="sub"><div class="sub-lbl">(iii) HCF of 1651 and 2032</div>
+  <div class="math">Step 1:  2032 = 1651 x 1 + 381
+Step 2:  1651 =  381 x 4 + 127
+Step 3:   381 =  127 x 3 +   0   [STOP]</div>
+  <div class="ans"><span>&#9989;</span><strong>HCF (1651, 2032) = 127</strong></div></div>
+  <div class="hint"><div class="hint-title">&#127919; Exam Tips</div><ul>
+  <li>Always write the full equation a=bq+r for each step</li>
+  <li>Always start with the LARGER number as dividend</li>
+  <li>HCF = divisor at the step where remainder becomes 0</li>
+  <li>Verify: HCF must divide both original numbers</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q2</span><span class="qtxt">Show that any positive odd integer is of the form 6q+1, or 6q+3 or 6q+5.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof</div>
+  <p>Let <b>a</b> be any positive integer, <b>b = 6</b>. By Division Algorithm: <b>a = 6q + r</b>, 0 &le; r &lt; 6</p>
+  <p>So r = 0,1,2,3,4,5. This gives 6 forms:</p></div>
+  <div class="math">6q     = 2(3q)         &rarr; EVEN
+6q + 1 = 2(3q) + 1     &rarr; ODD  [form 1]
+6q + 2 = 2(3q+1)       &rarr; EVEN
+6q + 3 = 2(3q+1) + 1   &rarr; ODD  [form 2]
+6q + 4 = 2(3q+2)       &rarr; EVEN
+6q + 5 = 2(3q+2) + 1   &rarr; ODD  [form 3]</div>
+  <div class="concl"><p>Since 6q, 6q+2, 6q+4 are even, any positive odd integer must be of the form <b>6q+1, 6q+3, or 6q+5</b>. Hence proved. &#8718;</p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q3</span><span class="qtxt">Show that the square of any positive integer is of the form 3p or 3p+1.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof</div>
+  <p>Let a be any positive integer, b=3. By Division Algorithm: <b>a = 3q + r</b>, r=0,1,2</p></div>
+  <div class="math">Case 1: a=3q   &rarr; a^2 = 9q^2 = 3(3q^2) = 3p
+Case 2: a=3q+1 &rarr; a^2 = 9q^2+6q+1 = 3(3q^2+2q)+1 = 3p+1
+Case 3: a=3q+2 &rarr; a^2 = 9q^2+12q+4 = 9q^2+12q+3+1 = 3(3q^2+4q+1)+1 = 3p+1</div>
+  <div class="concl"><p>Square is always <b>3p or 3p+1</b>. Form 3p+2 NEVER occurs. Hence proved. &#8718;</p></div>
+  <div class="hint"><div class="hint-title">&#127919; Exam Trick</div><ul><li>Case 3: write 4 as 3+1 to extract the factor of 3</li><li>Square can NEVER be of form 3p+2 &mdash; common exam question!</li></ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q4</span><span class="qtxt">Show that the cube of any positive integer is of the form 9m, 9m+1, or 9m+8.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof</div>
+  <p>Let a be any positive integer, b=3. By Division Algorithm: <b>a = 3q + r</b>, r=0,1,2</p></div>
+  <div class="math">Case 1: a=3q   &rarr; a^3 = 27q^3 = 9(3q^3) = 9m
+Case 2: a=3q+1 &rarr; a^3 = 27q^3+27q^2+9q+1 = 9(3q^3+3q^2+q)+1 = 9m+1
+Case 3: a=3q+2 &rarr; a^3 = 27q^3+54q^2+36q+8 = 9(3q^3+6q^2+4q)+8 = 9m+8</div>
+  <div class="concl"><p>Cube is always <b>9m, 9m+1, or 9m+8</b>. Hence proved. &#8718;</p></div>
+  <div class="hint"><div class="hint-title">&#127919; Hints</div><ul><li>Expand (3q+2)^3 using (a+b)^3 = a^3+3a^2b+3ab^2+b^3</li><li>Answers jump from 1 to 8 &mdash; never 9m+2 or 9m+3!</li><li>Verify: 1^3=1=9(0)+1, 2^3=8=9(0)+8, 3^3=27=9(3) &#10003;</li></ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q5</span><span class="qtxt">Show that one and only one out of n, n+2, n+4 is divisible by 3.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof</div>
+  <p>Let n be any positive integer. By Division Algorithm with b=3: <b>n = 3q+r</b>, r=0,1,2</p></div>
+  <div class="math">Case 1: n=3q   &rarr; n=3q [div&#10003;], n+2=3q+2, n+4=3(q+1)+1
+Case 2: n=3q+1 &rarr; n=3q+1, n+2=3(q+1) [div&#10003;], n+4=3(q+1)+2
+Case 3: n=3q+2 &rarr; n=3q+2, n+2=3(q+1)+1, n+4=3(q+2) [div&#10003;]</div>
+  <div class="concl"><p>In every case, exactly <b>one</b> of n, n+2, n+4 is divisible by 3. Hence proved. &#8718;</p></div>
+  </div></div>
+  </div><!-- ex-block -->
+  </div><!-- page ex11 -->
+
+
+  <!-- ==================== EXERCISE 1.2 ==================== -->
+  <div class="page" id="page-ex12">
+  <div class="ch-hero">
+    <div class="ch-hero-tag">Telangana State Board · Chapter 1 &middot; Real Numbers</div>
+    <h1>Exercise 1.2 &mdash; <span>Fundamental Theorem of Arithmetic</span></h1>
+    <p>Prime Factorisation &middot; HCF &amp; LCM &middot; Composite numbers &middot; All 6 questions</p>
+    <div class="pills"><span class="pill">Theorem 1.2</span><span class="pill">HCF &amp; LCM</span><span class="pill">6 Questions</span></div>
+  </div>
+  <div class="ex-block">
+  <div class="concept">
+    <div class="concept-title">Golden Rules &mdash; Prime Factorisation Method</div>
+    <ul>
+      <li><b>HCF</b> = Product of LOWEST powers of COMMON prime factors</li>
+      <li><b>LCM</b> = Product of HIGHEST powers of ALL prime factors</li>
+      <li><b>Key:</b> HCF(a,b) x LCM(a,b) = a x b &nbsp; (only for TWO numbers!)</li>
+    </ul>
+  </div>
+
+  <div class="qcard open" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1</span><span class="qtxt">Express as product of prime factors: (i)140 (ii)156 (iii)3825 (iv)5005 (v)7429</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i)  140 = 2^2 x 5 x 7
+(ii) 156 = 2^2 x 3 x 13
+(iii)3825 = 3^2 x 5^2 x 17
+(iv) 5005 = 5 x 7 x 11 x 13
+(v)  7429 = 17 x 19 x 23</div>
+  <div class="hint"><div class="hint-title">&#127919; Tip</div><ul><li>Try 2,3,5,7,11,13,17,19,23 in order</li><li>Divisibility by 3: sum of digits divisible by 3</li></ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q2</span><span class="qtxt">Find LCM and HCF: (i)12,15,21 (ii)17,23,29 (iii)8,9,25 (iv)72,108 (v)306,657</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) 12=2^2x3, 15=3x5, 21=3x7
+    HCF=3, LCM=2^2x3x5x7=420
+
+(ii) 17,23,29 all prime &rarr; HCF=1, LCM=17x23x29=11339
+
+(iii) 8=2^3, 9=3^2, 25=5^2 (no common prime)
+     HCF=1, LCM=2^3x3^2x5^2=1800
+
+(iv) 72=2^3x3^2, 108=2^2x3^3
+     HCF=2^2x3^2=36, LCM=2^3x3^3=216
+     Verify: 36x216=7776=72x108 &#10003;
+
+(v) 306=2x3^2x17, 657=3^2x73
+    HCF=3^2=9, LCM=2x3^2x17x73=22338</div>
+  <div class="hint"><div class="hint-title">&#127919; Golden Rules</div><ul>
+  <li>HCF: LOWEST power of COMMON primes only</li>
+  <li>LCM: HIGHEST power of ALL primes</li>
+  <li>HCF x LCM = a x b ONLY for two numbers!</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q3</span><span class="qtxt">Check whether 6^n can end with digit 0 for any natural number n.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">For ending in 0: number must be divisible by 10 = 2 x 5
+So prime factorisation must contain BOTH 2 and 5.
+
+6^n = (2x3)^n = 2^n x 3^n
+
+Only primes are 2 and 3. Factor 5 is NEVER present.
+By Fundamental Theorem of Arithmetic (unique factorisation):
+5 can never appear in 6^n.</div>
+  <div class="ans"><span>&#9989;</span><strong>6^n can NEVER end with digit 0 for any natural number n.</strong></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q4</span><span class="qtxt">Explain why 7x11x13+13 and 7x6x5x4x3x2x1+5 are composite numbers.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(a) 7x11x13 + 13 = 13x(7x11+1) = 13x78
+    Has factors 13 and 78 &rarr; COMPOSITE
+
+(b) 7x6x5x4x3x2x1 + 5 = 5x(7x6x4x3x2x1+1) = 5x1009
+    Has factors 5 and 1009 &rarr; COMPOSITE</div>
+  <div class="hint"><div class="hint-title">&#127919; Pattern</div><p>The number being ADDED at the end is always a factor of one product term. Pull it out as common factor, get A x B form &rarr; composite!</p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q5</span><span class="qtxt">Show that (17x11x2) + (17x11x5) is composite.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(17x11x2) + (17x11x5) = 17x11x(2+5) = 17x11x7 = 1309
+Has factors 7, 11, 17 &rarr; COMPOSITE</div>
+  <div class="ans"><span>&#9989;</span><strong>1309 = 7 x 11 x 17 is a composite number.</strong></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q6</span><span class="qtxt">What is the last digit of 6^100?</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">6^1=6, 6^2=36, 6^3=216, 6^4=1296 &rarr; last digit always 6
+Because 6x6=36 always ends in 6.</div>
+  <div class="ans"><span>&#9989;</span><strong>Last digit of 6^100 = 6</strong></div>
+  </div></div>
+  </div></div><!-- ex12 page -->
+
+
+  <!-- ==================== EXERCISE 1.3 ==================== -->
+  <div class="page" id="page-ex13">
+  <div class="ch-hero">
+    <div class="ch-hero-tag">Telangana State Board · Chapter 1 &middot; Real Numbers</div>
+    <h1>Exercise 1.3 &mdash; <span>Rational Numbers &amp; Decimal Expansions</span></h1>
+    <p>Theorem 1.3, 1.4, 1.5 &middot; Terminating &amp; Non-Terminating decimals &middot; All 4 questions</p>
+    <div class="pills"><span class="pill">Theorem 1.3</span><span class="pill">Theorem 1.4</span><span class="pill">Theorem 1.5</span><span class="pill">4 Questions</span></div>
+  </div>
+  <div class="ex-block">
+  <div class="concept">
+    <div class="concept-title">Three Book Theorems</div>
+    <ul>
+      <li><b>Theorem 1.3:</b> Decimal terminates &rarr; q is of the form 2^n x 5^m</li>
+      <li><b>Theorem 1.4:</b> q is of the form 2^n x 5^m &rarr; decimal terminates</li>
+      <li><b>Theorem 1.5:</b> q has prime other than 2 or 5 &rarr; Non-terminating repeating</li>
+    </ul>
+  </div>
+
+  <div class="qcard open" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1</span><span class="qtxt">Convert to decimal and state type: (i)3/8 (ii)229/400 (iii)4 1/5 (iv)2/11 (v)8/125</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <table>
+  <tr><th>#</th><th>Fraction</th><th>Denominator</th><th>Working</th><th>Decimal</th><th>Type</th></tr>
+  <tr><td>(i)</td><td>3/8</td><td>2^3 only &#10003;</td><td>3x5^3/(2^3x5^3)=375/1000</td><td>0.375</td><td class="T">Terminating</td></tr>
+  <tr><td>(ii)</td><td>229/400</td><td>2^4x5^2 &#10003;</td><td>229x5^2/(2^4x5^4)=5725/10000</td><td>0.5725</td><td class="T">Terminating</td></tr>
+  <tr><td>(iii)</td><td>21/5</td><td>5^1 &#10003;</td><td>21x2/(5x2)=42/10</td><td>4.2</td><td class="T">Terminating</td></tr>
+  <tr><td>(iv)</td><td>2/11</td><td>11 &#10007;</td><td>2&divide;11=0.1818...</td><td>0.18(bar)</td><td class="NT">Non-Term.</td></tr>
+  <tr><td>(v)</td><td>8/125</td><td>5^3 &#10003;</td><td>8x2^3/(5^3x2^3)=64/1000</td><td>0.064</td><td class="T">Terminating</td></tr>
+  </table>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q2</span><span class="qtxt">Without division state type for all 10 fractions.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <table>
+  <tr><th>Fraction</th><th>Denominator (simplified)</th><th>Type</th></tr>
+  <tr><td>(i) 13/3125</td><td>5^5 &#10003;</td><td class="T">Terminating</td></tr>
+  <tr><td>(ii) 11/12</td><td>2^2x3, has 3 &#10007;</td><td class="NT">Non-Terminating</td></tr>
+  <tr><td>(iii) 64/455</td><td>5x7x13, has 7,13 &#10007;</td><td class="NT">Non-Terminating</td></tr>
+  <tr><td>(iv) 15/1600</td><td>2^6x5^2 &#10003;</td><td class="T">Terminating</td></tr>
+  <tr><td>(v) 29/343</td><td>7^3 &#10007;</td><td class="NT">Non-Terminating</td></tr>
+  <tr><td>(vi) 23/2^3.5^2</td><td>2^3x5^2 &#10003;</td><td class="T">Terminating</td></tr>
+  <tr><td>(vii) 129/2^2.5^7.7^5</td><td>has 7^5 &#10007;</td><td class="NT">Non-Terminating</td></tr>
+  <tr><td>(viii) 9/15</td><td>Simplify: 3/5. 5^1 &#10003;</td><td class="T">Terminating</td></tr>
+  <tr><td>(ix) 36/100</td><td>Simplify: 9/25. 5^2 &#10003;</td><td class="T">Terminating</td></tr>
+  <tr><td>(x) 77/210</td><td>Simplify: 11/30. 2x3x5, has 3 &#10007;</td><td class="NT">Non-Terminating</td></tr>
+  </table>
+  <div class="hint"><div class="hint-title">&#127919; Most Important Trap</div><ul><li>ALWAYS simplify fraction FIRST, then check denominator</li><li>Don't check unsimplified denominator &mdash; costs marks!</li></ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q3</span><span class="qtxt">Write in decimal using Theorem 1.4: (i)13/25 (ii)15/16 (iii)23/2^2.5^2 (iv)7218/3^2.5^2 (v)143/110</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) 13/5^2 x 2^2/2^2 = 52/100 = 0.52
+(ii) 15/2^4 x 5^4/5^4 = 9375/10000 = 0.9375
+(iii) Denom=2^2x5^2=100 already &rarr; 23/100 = 0.23
+(iv) Simplify: 7218/9=802, 802/25 x 4/4 = 3208/100 = 32.08
+(v) 110=2x5x11 (has 11) &rarr; non-terminating = 1.30(bar)</div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q4</span><span class="qtxt">Express as p/q and find prime factors of q: (i)43.123 (ii)0.1201201 (iii)43.12(bar) (iv)0.63(bar)</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) 43.123 = 43123/1000,  q=2^3x5^3
+(ii) 0.1201201 = 1201201/10000000,  q=2^7x5^7
+(iii) 43.121212...: 100x=4312.12..., 99x=4269, x=4269/99=1423/33,  q=3x11
+(iv) 0.636363...: 100x=63.63..., 99x=63, x=7/11,  q=11</div>
+  <div class="concl"><p><b>Observation:</b> Terminating decimals &rarr; q has only 2s and 5s. Non-terminating &rarr; q has other primes. This confirms Theorems 1.3, 1.4, 1.5.</p></div>
+  </div></div>
+  </div></div><!-- ex13 -->
+
+
+  <!-- ==================== EXERCISE 1.4 ==================== -->
+  <div class="page" id="page-ex14">
+  <div class="ch-hero">
+    <div class="ch-hero-tag">Telangana State Board · Chapter 1 &middot; Real Numbers</div>
+    <h1>Exercise 1.4 &mdash; <span>Irrational Numbers</span></h1>
+    <p>Theorem 1.6 &middot; Proof by Contradiction &middot; 6 proofs</p>
+    <div class="pills"><span class="pill">Theorem 1.6</span><span class="pill">Proof by Contradiction</span><span class="pill">6 Questions</span></div>
+  </div>
+  <div class="ex-block">
+  <div class="concept">
+    <div class="concept-title">Book Method &mdash; Proof by Contradiction</div>
+    <ul>
+      <li><b>Step 1:</b> Assume the number IS rational &rarr; write as a/b (co-prime, b&ne;0)</li>
+      <li><b>Step 2:</b> Rearrange to isolate the irrational part</li>
+      <li><b>Step 3:</b> Show irrational part = rational &rarr; contradiction &rarr; hence irrational &#8718;</li>
+      <li><b>Theorem 1.6:</b> If prime p divides a^2, then p divides a (state this by name!)</li>
+    </ul>
+  </div>
+
+  <div class="qcard open" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1(i)</span><span class="qtxt">Prove that 1/sqrt(2) is irrational.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof by Contradiction</div>
+  <p>Assume <b>1/sqrt(2) is rational</b> = a/b (co-prime, b&ne;0)</p>
+  <p>Then sqrt(2) = b/a &rarr; rational. <b>But sqrt(2) is irrational. Contradiction!</b></p>
+  <p>Therefore <b>1/sqrt(2) is irrational. &#8718;</b></p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1(ii)</span><span class="qtxt">Prove that sqrt(3) + sqrt(5) is irrational.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof by Contradiction</div>
+  <p>Assume <b>sqrt(3)+sqrt(5) = a/b</b> (co-prime)</p>
+  <p>Then sqrt(3) = a/b - sqrt(5). Squaring: 3 = a^2/b^2 - 2(a/b).sqrt(5) + 5</p>
+  <p>Rearranging: sqrt(5) = (a^2+2b^2)/(2ab) &rarr; rational. <b>But sqrt(5) is irrational. Contradiction!</b></p>
+  <p>Therefore <b>sqrt(3)+sqrt(5) is irrational. &#8718;</b></p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1(iii)</span><span class="qtxt">Prove that 6 + sqrt(2) is irrational.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof by Contradiction</div>
+  <p>Assume <b>6+sqrt(2) = a/b</b> (co-prime)</p>
+  <p>Then sqrt(2) = a/b - 6 = (a-6b)/b &rarr; rational. <b>But sqrt(2) is irrational. Contradiction!</b></p>
+  <p>Therefore <b>6+sqrt(2) is irrational. &#8718;</b></p></div>
+  <div class="hint"><div class="hint-title">&#127919; Template for (a + sqrt(b)) type</div><ul>
+  <li>Assume a+sqrt(b)=p/q &rarr; sqrt(b)=(p-aq)/q &rarr; rational &rarr; contradiction</li>
+  <li>Works for: 6+sqrt(2), 5-sqrt(3), 2+sqrt(5), 7-sqrt(11)...</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1(iv)</span><span class="qtxt">Prove that sqrt(5) is irrational.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof using Theorem 1.6</div>
+  <p>Assume <b>sqrt(5) = a/b</b> (co-prime, b&ne;0). Then 5b^2 = a^2.</p>
+  <p>So 5|a^2. By <b>Theorem 1.6</b>, 5|a. Write a=5c.</p>
+  <p>Then 5b^2=25c^2 &rarr; b^2=5c^2 &rarr; 5|b^2 &rarr; 5|b.</p>
+  <p>Now 5 divides BOTH a and b. <b>But a,b are co-prime. Contradiction!</b></p>
+  <p>Therefore <b>sqrt(5) is irrational. &#8718;</b></p></div>
+  <div class="hint"><div class="hint-title">&#127919; The sqrt(prime) Template &mdash; Most Important!</div><ul>
+  <li>Assume sqrt(p)=a/b (co-prime) &rarr; p|a &rarr; a=pc &rarr; p|b &rarr; contradicts co-prime</li>
+  <li>Same proof works for sqrt(2), sqrt(3), sqrt(5), sqrt(7), any prime!</li>
+  <li>ALWAYS say "By Theorem 1.6" &mdash; earns marks!</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1(v)</span><span class="qtxt">Prove that 3 + 2sqrt(5) is irrational.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof by Contradiction</div>
+  <p>Assume <b>3+2sqrt(5) = a/b</b> (co-prime). Then sqrt(5)=(a-3b)/(2b) &rarr; rational.</p>
+  <p><b>But sqrt(5) is irrational. Contradiction!</b> Therefore <b>3+2sqrt(5) is irrational. &#8718;</b></p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q2</span><span class="qtxt">Prove that sqrt(p) + sqrt(q) is irrational where p, q are primes.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="proof"><div class="proof-title">Proof by Contradiction (General case from Example 10 of book)</div>
+  <p>Assume <b>sqrt(p)+sqrt(q) = a/b</b> (co-prime). Then sqrt(p) = a/b - sqrt(q).</p>
+  <p>Squaring: p = a^2/b^2 - 2(a/b).sqrt(q) + q</p>
+  <p>Rearranging: sqrt(q) = (a^2+(q-p)b^2)/(2ab) &rarr; rational.</p>
+  <p><b>But q is prime so sqrt(q) is irrational. Contradiction!</b></p>
+  <p>Therefore <b>sqrt(p)+sqrt(q) is irrational. &#8718;</b></p></div>
+  <div class="hint"><div class="hint-title">&#127919; Proof Strategy for ALL Ex 1.4</div><ul>
+  <li>Start: "Assume [expression] is rational"</li>
+  <li>Write: "Let it = a/b, co-prime, b&ne;0"</li>
+  <li>Rearrange to isolate sqrt(prime) on one side</li>
+  <li>Show that side is rational &rarr; contradiction</li>
+  <li>End: "This contradicts that sqrt(...) is irrational. Therefore... irrational. &#8718;"</li>
+  </ul></div>
+  </div></div>
+  </div></div><!-- ex14 -->
+
+
+  <!-- ==================== EXERCISE 1.5 ==================== -->
+  <div class="page" id="page-ex15">
+  <div class="ch-hero">
+    <div class="ch-hero-tag">Telangana State Board · Chapter 1 &middot; Real Numbers</div>
+    <h1>Exercise 1.5 &mdash; <span>Logarithms</span></h1>
+    <p>Definition &middot; Three Laws: Product, Quotient, Power &middot; All 9 questions</p>
+    <div class="pills"><span class="pill">Product Rule</span><span class="pill">Quotient Rule</span><span class="pill">Power Rule</span><span class="pill">9 Questions</span></div>
+  </div>
+  <div class="ex-block">
+  <div class="conv-box">
+    <div class="conv-title">Golden Conversion Formula (from your book)</div>
+    <div class="conv-formula">log&#8330; N = x &nbsp; &#8660; &nbsp; a^x = N</div>
+    <div class="conv-note">This is the ONLY formula needed to start every log problem. Convert to exponential form!</div>
+  </div>
+  <div class="law-grid">
+  <div class="law"><div class="law-name">&#9312; Product Rule</div><div class="law-formula">log(xy) = log x + log y</div><p>Multiplication &rarr; Addition</p></div>
+  <div class="law"><div class="law-name">&#9313; Quotient Rule</div><div class="law-formula">log(x/y) = log x &minus; log y</div><p>Division &rarr; Subtraction</p></div>
+  <div class="law"><div class="law-name">&#9314; Power Rule</div><div class="law-formula">log x^n = n &sdot; log x</div><p>Exponent &rarr; Multiplier (pull down)</p></div>
+  <div class="law"><div class="law-name">Special Values</div><div class="law-formula">log&#8330; 1 = 0 &nbsp; log&#8330; a = 1</div><p>a^(log&#8330; N) = N</p></div>
+  </div>
+
+  <div class="qcard open" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q1</span><span class="qtxt">Determine the value of: (i)log&#8322;&#8325;5 (ii)log&#8328;&#8321;3 (iii)log&#8322;(1/16) (iv)log&#8327;1 (v)log&#8339;x (vi)log&#8322;512 (vii)log&#8321;&#8320;0.01 (viii)log&#8322;/&#8323;(8/27) (ix)2^(2+log&#8322;3)</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) log&#8322;&#8325;5=x &rarr; 25^x=5 &rarr; (5^2)^x=5^1 &rarr; 2x=1 &rarr; x = 1/2
+(ii) log&#8328;&#8321;3=x &rarr; 81^x=3 &rarr; (3^4)^x=3^1 &rarr; 4x=1 &rarr; x = 1/4
+(iii)log&#8322;(1/16)=x &rarr; 2^x=1/16=2^(-4) &rarr; x = -4
+(iv) log&#8327;1=x &rarr; 7^x=1=7^0 &rarr; x = 0  [log of 1 = 0 always]
+(v) log&#8339;x=x &rarr; x^k=x^1 &rarr; k = 1     [log of base to itself = 1 always]
+(vi) log&#8322;512=x &rarr; 2^x=512=2^9 &rarr; x = 9
+(vii)log&#8321;&#8320;0.01=x &rarr; 10^x=0.01=10^(-2) &rarr; x = -2
+(viii)log(2/3)(8/27)=x &rarr; (2/3)^x=8/27=(2/3)^3 &rarr; x = 3
+(ix) 2^(2+log&#8322;3) = 2^2 x 2^(log&#8322;3) = 4 x 3 = 12  [a^(log&#8330;N)=N]</div>
+  <div class="hint"><div class="hint-title">&#127919; Q1 Master Method</div><ul>
+  <li>Let log&#8330;N=x &rarr; write a^x=N &rarr; express same base &rarr; compare powers</li>
+  <li>log of 1 = 0 always. Log of base to itself = 1 always.</li>
+  <li>For Q1(ix): use identity a^(log&#8330;N)=N (exponential and log cancel)</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q2</span><span class="qtxt">Write as log N and find value: (i)log2+log5 (ii)log&#8322;16-log&#8322;2 (iii)3log&#8326;&#8308;4 (iv)2log3-3log2 (v)log10+2log3-log2</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) log2+log5 = log(2x5) = log10 = 1
+(ii) log&#8322;16-log&#8322;2 = log&#8322;(16/2) = log&#8322;8 = log&#8322;2^3 = 3
+(iii)3log&#8326;&#8308;4 = log&#8326;&#8308;(4^3) = log&#8326;&#8308;64 = 1  [log of base to itself=1]
+(iv) 2log3-3log2 = log3^2-log2^3 = log9-log8 = log(9/8)
+(v) log10+2log3-log2 = log10+log9-log2 = log(10x9/2) = log45</div>
+  <div class="hint"><div class="hint-title">&#127919; Order of Steps</div><ul>
+  <li>Step 1: Power Rule &mdash; bring all coefficients up as exponents first</li>
+  <li>Step 2: Product Rule &mdash; combine all + terms into multiplication</li>
+  <li>Step 3: Quotient Rule &mdash; handle - terms as division</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q3</span><span class="qtxt">Evaluate in terms of x=log&#8322;3 and y=log&#8322;5: (i)log&#8322;15 (ii)log&#8322;7.5 (iii)log&#8322;60 (iv)log&#8322;6750</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">[Note: log&#8322;2 = 1 since 2^1=2]
+(i) log&#8322;15 = log&#8322;(3x5) = log&#8322;3+log&#8322;5 = x+y
+(ii) log&#8322;7.5 = log&#8322;(15/2) = log&#8322;15-log&#8322;2 = (x+y)-1 = x+y-1
+(iii)log&#8322;60 = log&#8322;(2^2x3x5) = 2+x+y
+(iv) 6750=2x3^3x5^3 &rarr; log&#8322;6750 = 1+3x+3y</div>
+  <div class="hint"><div class="hint-title">&#127919; Method</div><ul>
+  <li>Prime factorise the number first: break into powers of 2, 3, 5</li>
+  <li>Apply Product Rule to split, Power Rule to bring down exponents</li>
+  <li>Replace: log&#8322;3=x, log&#8322;5=y, log&#8322;2=1</li>
+  </ul></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q4</span><span class="qtxt">Expand: (i)log1000 (ii)log(128/625) (iii)log x^2 y^3 z^4 (iv)log(p^2 q^3/r^4) (v)log(x^3/y^2)</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">(i) log1000 = log10^3 = 3log10 = 3
+(ii) log(128/625) = log2^7-log5^4 = 7log2-4log5
+(iii)log(x^2 y^3 z^4) = 2logx+3logy+4logz
+(iv) log(p^2 q^3/r^4) = 2logp+3logq-4logr
+(v) log(x^3/y^2) = 3logx-2logy</div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q5</span><span class="qtxt">If x^2+y^2=25xy, prove that 2log(x+y)=3log3+logx+logy.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">x^2+y^2=25xy
+Add 2xy: (x+y)^2 = 27xy
+Take log: log(x+y)^2 = log(27xy)
+2log(x+y) = log27+logx+logy = log3^3+logx+logy = 3log3+logx+logy &#8718;</div>
+  <div class="ans"><span>&#9989;</span><strong>Hence proved. &#8718;</strong></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q6</span><span class="qtxt">If log((x+y)/3)=(1/2)(logx+logy), find x/y + y/x.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">RHS = (1/2)log(xy) = log(sqrt(xy))
+So (x+y)/3 = sqrt(xy)
+Square: (x+y)^2 = 9xy
+x^2+2xy+y^2 = 9xy
+x^2+y^2 = 7xy
+Divide by xy: x/y + y/x = 7</div>
+  <div class="ans"><span>&#9989;</span><strong>x/y + y/x = 7</strong></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q7</span><span class="qtxt">If (2.3)^x = (0.23)^y = 1000, find 1/x - 1/y.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">x.log(2.3)=3 and y.log(0.23)=3
+So log(2.3)=3/x and log(0.23)=3/y
+Now 0.23=2.3/10, so log(0.23)=log(2.3)-1
+3/y = 3/x - 1 &rarr; 1/x - 1/y = 1/3</div>
+  <div class="ans"><span>&#9989;</span><strong>1/x - 1/y = 1/3</strong></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q8</span><span class="qtxt">If 2^(x+1) = 3^(1-x), find x.</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="math">Take log both sides:
+(x+1)log2 = (1-x)log3
+x.log2 + log2 = log3 - x.log3
+x(log2+log3) = log3-log2
+x = (log3-log2)/(log3+log2) = log(3/2)/log6</div>
+  <div class="ans"><span>&#9989;</span><strong>x = (log3-log2)/(log2+log3)</strong></div>
+  <div class="hint"><div class="hint-title">&#127919; Tip</div><p>When bases are DIFFERENT, take log both sides. Apply Power Rule to bring exponents down. Collect x terms and factorise.</p></div>
+  </div></div>
+
+  <div class="qcard" onclick="toggle(this)">
+  <div class="qhead"><span class="qnum">Q9</span><span class="qtxt">Is (i) log 2 rational or irrational? (ii) log 100 rational or irrational?</span><span class="qarrow">&#9660;</span></div>
+  <div class="qbody">
+  <div class="sub"><div class="sub-lbl">(i) log 2</div>
+  <div class="math">Assume log&#8321;&#8320;2 = p/q (rational, co-prime)
+Then 10^(p/q)=2 &rarr; 10^p=2^q &rarr; 2^p.5^p=2^q
+For 5^p to disappear, p must=0. But 10^0=1&ne;2. Contradiction!</div>
+  <div class="ans"><span>&#9989;</span><strong>log 2 is IRRATIONAL</strong></div></div>
+  <div class="sub"><div class="sub-lbl">(ii) log 100</div>
+  <div class="math">log 100 = log 10^2 = 2log10 = 2x1 = 2 (a rational number)</div>
+  <div class="ans"><span>&#9989;</span><strong>log 100 = 2 is RATIONAL</strong></div></div>
+  <div class="hint"><div class="hint-title">&#127919; Key Fact</div><ul>
+  <li>log of a POWER OF 10 is always rational (it's an integer!)</li>
+  <li>log of numbers NOT powers of 10 (like 2,3,5,7) are irrational</li>
+  </ul></div>
+  </div></div>
+  </div></div><!-- ex15 -->
+
+
+  <!-- ==================== COMING SOON PAGES ==================== -->
+  <div class="page" id="page-ch2">
+  <div class="coming-page">
+    <div class="icon">&#128218;</div>
+    <h2>Chapter 2 &mdash; Sets</h2>
+    <p>This chapter will be added soon. All exercises with solutions and exam hints.</p>
+    <div class="badge">Coming Soon</div>
+  </div></div>
+
+  <div class="page" id="page-ch3">
+  <div class="coming-page">
+    <div class="icon">&#128218;</div>
+    <h2>Chapter 3 &mdash; Polynomials</h2>
+    <p>This chapter will be added soon. All exercises with solutions and exam hints.</p>
+    <div class="badge">Coming Soon</div>
+  </div></div>
+
+  <div class="page" id="page-ch4">
+  <div class="coming-page">
+    <div class="icon">&#128218;</div>
+    <h2>Chapter 4 &mdash; Linear Equations</h2>
+    <p>This chapter will be added soon. All exercises with solutions and exam hints.</p>
+    <div class="badge">Coming Soon</div>
+  </div></div>
+
+  <div class="page" id="page-ch5">
+  <div class="coming-page">
+    <div class="icon">&#128218;</div>
+    <h2>Chapter 5 &mdash; Quadratic Equations</h2>
+    <p>This chapter will be added soon.</p>
+    <div class="badge">Coming Soon</div>
+  </div></div>
+
+</main><!-- end main -->
+
+<script>
+function toggle(c){ c.classList.toggle("open"); }
+
+function showPage(id, btn){
+  // hide all pages
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  // show target
+  var page = document.getElementById("page-"+id);
+  if(page) page.classList.add("active");
+  // update nav
+  document.querySelectorAll(".ex-btn").forEach(b => b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  // update topbar
+  var titles = {
+    "ex11":"Exercise 1.1 \u2014 Euclid's Division Algorithm",
+    "ex12":"Exercise 1.2 \u2014 Fundamental Theorem of Arithmetic",
+    "ex13":"Exercise 1.3 \u2014 Rational Numbers & Decimal Expansions",
+    "ex14":"Exercise 1.4 \u2014 Irrational Numbers",
+    "ex15":"Exercise 1.5 \u2014 Logarithms",
+    "ch2":"Chapter 2 \u2014 Sets","ch3":"Chapter 3 \u2014 Polynomials",
+    "ch4":"Chapter 4 \u2014 Linear Equations","ch5":"Chapter 5 \u2014 Quadratic Equations"
+  };
+  var subs = {
+    "ex11":"Chapter 1 \u2014 Real Numbers","ex12":"Chapter 1 \u2014 Real Numbers",
+    "ex13":"Chapter 1 \u2014 Real Numbers","ex14":"Chapter 1 \u2014 Real Numbers",
+    "ex15":"Chapter 1 \u2014 Real Numbers","ch2":"","ch3":"","ch4":"","ch5":""
+  };
+  document.getElementById("topbar-title").textContent = titles[id]||"";
+  document.getElementById("topbar-sub").textContent = subs[id]||"";
+  // close sidebar on mobile
+  if(window.innerWidth<=768) document.getElementById("sidebar").classList.remove("open");
+}
+
+function toggleChapter(btn, id){
+  btn.classList.toggle("open");
+}
+
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+</script>
+</body>
+</html>
